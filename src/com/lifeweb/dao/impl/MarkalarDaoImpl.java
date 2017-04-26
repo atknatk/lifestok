@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.lifeweb.dao.impl;
 
 import com.lifeweb.dao.MarkalarDao;
@@ -26,14 +22,14 @@ private final static Logger LOGGER = Logger.getLogger(MarkalarDaoImpl.class
 
     @Override
     public int createMarkalar(Markalar markalar) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
+        Connection con;
+        PreparedStatement pstmt;
         try {
             con = DaoHelper.instance().getConnection();
             pstmt = con.prepareStatement("INSERT INTO markalar ( MARKA_ADI, MARKA_DURUM)"
                     + " VALUES (?, ?)");
             pstmt.setString(1, markalar.getMarkaAdi());
-            pstmt.setString(3, markalar.getMarkaDurum());
+            pstmt.setString(2, markalar.getMarkaDurum());
             pstmt.executeUpdate();
             pstmt.close();
         } catch (SQLException e) {
@@ -45,9 +41,9 @@ private final static Logger LOGGER = Logger.getLogger(MarkalarDaoImpl.class
 
     @Override
     public List<Markalar> getMarkalarList() {
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
+        Connection con;
+        PreparedStatement pstmt;
+        ResultSet rs;
         ArrayList<Markalar> list = new ArrayList<>();
 
         try {
@@ -73,9 +69,9 @@ private final static Logger LOGGER = Logger.getLogger(MarkalarDaoImpl.class
 
     @Override
     public Markalar getMarkalar(int id) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
+        Connection con;
+        PreparedStatement pstmt;
+        ResultSet rs;
         Markalar data = null;
         try {
             con = DaoHelper.instance().getConnection();
@@ -102,8 +98,8 @@ private final static Logger LOGGER = Logger.getLogger(MarkalarDaoImpl.class
 
     @Override
     public Markalar editMarkalar(Markalar markalar) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
+        Connection con;
+        PreparedStatement pstmt;
 
         try {
             con = DaoHelper.instance().getConnection();
@@ -122,8 +118,8 @@ private final static Logger LOGGER = Logger.getLogger(MarkalarDaoImpl.class
     @Override
     public void removeMarkalar(Markalar markalar) {
 
-        Connection con = null;
-        PreparedStatement pstmt = null;
+        Connection con;
+        PreparedStatement pstmt;
 
         try {
             con = DaoHelper.instance().getConnection();

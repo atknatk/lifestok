@@ -1,29 +1,39 @@
 package com.lifeweb.ui.kullanicilar;
 
-import com.lifeweb.enitity.Kullanici;
-import com.lifeweb.ui.helper.UIConfig;
+import com.lifeweb.dao.controller.KullaniciController;
+import com.lifeweb.dao.impl.KullaniciDaoImpl;
+import com.lifeweb.dao.pojo.Kullanici;
+import  com.lifeweb.ui.helper.UIConfig;
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Life
  */
 public class KullaniciListesi extends javax.swing.JFrame {
-    
+      protected final Color BACKGROUND1 = new Color(253, 253, 220);
+    protected final Color BACKGROUND2 = new Color(255, 255, 255);
+    private DefaultTableModel kulModel;
+
     public KullaniciListesi() {
         initComponents();
         setLocation(UIConfig.getLocation(KullaniciListesi.this));
+        loadTable();
     }
+    
+    private void loadTable(){
+        kulModel = (DefaultTableModel) KullaniciTableModel.kullaniciTableModel(false);
+         jTable1.setModel(kulModel);
+    }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        Stok_TakipPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("Stok_TakipPU").createEntityManager();
-        kullaniciQuery = java.beans.Beans.isDesignTime() ? null : Stok_TakipPUEntityManager.createQuery("SELECT k FROM Kullanici k");
-        kullaniciList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : kullaniciQuery.getResultList();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -43,22 +53,6 @@ public class KullaniciListesi extends javax.swing.JFrame {
         setResizable(false);
 
         jTable1.setAutoCreateRowSorter(true);
-
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, kullaniciList, jTable1);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${kullaniciId}"));
-        columnBinding.setColumnName("Kullanici Id");
-        columnBinding.setColumnClass(Integer.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${adi}"));
-        columnBinding.setColumnName("Adi");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${soyadi}"));
-        columnBinding.setColumnName("Soyadi");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${kullaniciAdi}"));
-        columnBinding.setColumnName("Kullanici Adi");
-        columnBinding.setColumnClass(String.class);
-        bindingGroup.addBinding(jTableBinding);
-        jTableBinding.bind();
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("İsim:");
@@ -68,15 +62,6 @@ public class KullaniciListesi extends javax.swing.JFrame {
         jLabel3.setText("Kullanıcı Adı:");
 
         jLabel4.setText("Şifre:");
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.adi}"), jTextField1, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.soyadi}"), jTextField2, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jTable1, org.jdesktop.beansbinding.ELProperty.create("${selectedElement.kullaniciAdi}"), jTextField3, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        bindingGroup.addBinding(binding);
 
         jButton1.setText("Ekle");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -161,8 +146,6 @@ public class KullaniciListesi extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bindingGroup.bind();
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -173,8 +156,9 @@ public class KullaniciListesi extends javax.swing.JFrame {
         k.setKullaniciAdi(jTextField3.getText());
         k.setSifre(jPasswordField1.getText());
         k.setYetki("Kasiyer");
-//        KullaniciJpaController controller = new KullaniciJpaController(EntityHelper.getEmf());
-//        controller.create(k);
+        KullaniciController controller = new KullaniciController(new KullaniciDaoImpl());
+        controller.createKullanici(k);
+        loadTable();
     }//GEN-LAST:event_jButton1ActionPerformed
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -187,8 +171,9 @@ public class KullaniciListesi extends javax.swing.JFrame {
                 k.setSifre(jPasswordField1.getText());
                 k.setYetki("Kasiyer");
                 k.setKullaniciId(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString()));
-//                KullaniciJpaController controller = new KullaniciJpaController(EntityHelper.getEmf());
-//                controller.edit(k);
+                   KullaniciController controller = new KullaniciController(new KullaniciDaoImpl());
+                  controller.editKullanici(k);
+        loadTable();
             } catch (Exception ex) {
                 Logger.getLogger(KullaniciListesi.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -196,30 +181,19 @@ public class KullaniciListesi extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        if (jTable1.getSelectedRow() != -1) {
-//            try {
-//                Kullanici k = new Kullanici();
-//                k.setKullaniciId(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString()));
-//                KullaniciJpaController controller = new KullaniciJpaController(EntityHelper.getEmf());
-//                controller.destroy(k.getKullaniciId());
-//            } catch (NonexistentEntityException ex) {
-//                Logger.getLogger(KullaniciListesi.class.getName()).log(Level.SEVERE, null, ex);
-//            } catch (Exception ex) {
-//                Logger.getLogger(KullaniciListesi.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-    
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new KullaniciListesi().setVisible(true);
+        if (jTable1.getSelectedRow() != -1) {
+            try {
+                Kullanici k = new Kullanici();
+                k.setKullaniciId(Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString()));
+                KullaniciController controller = new KullaniciController(new KullaniciDaoImpl());
+        controller.removeKullanici(k);
+            loadTable();
+            }catch (Exception ex) {
+                Logger.getLogger(KullaniciListesi.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
-    }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.persistence.EntityManager Stok_TakipPUEntityManager;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -233,8 +207,5 @@ public class KullaniciListesi extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private java.util.List<Kullanici> kullaniciList;
-    private javax.persistence.Query kullaniciQuery;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

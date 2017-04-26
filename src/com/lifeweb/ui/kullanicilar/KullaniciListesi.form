@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <NonVisualComponents>
-    <Component class="javax.persistence.EntityManager" name="Stok_TakipPUEntityManager">
-      <Properties>
-        <Property name="persistenceUnit" type="java.lang.String" value="Stok_TakipPU"/>
-      </Properties>
-    </Component>
-    <Component class="javax.persistence.Query" name="kullaniciQuery">
-      <Properties>
-        <Property name="query" type="java.lang.String" value="SELECT k FROM Kullanici k"/>
-        <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
-          <ComponentRef name="Stok_TakipPUEntityManager"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="java.util.List" name="kullaniciList">
-      <Properties>
-        <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
-          <ComponentRef name="kullaniciQuery"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Kullanici&gt;"/>
-      </AuxValues>
-    </Component>
-  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="alwaysOnTop" type="boolean" value="true"/>
@@ -138,22 +113,6 @@
           <Properties>
             <Property name="autoCreateRowSorter" type="boolean" value="true"/>
           </Properties>
-          <BindingProperties>
-            <BindingProperty name="elements" source="kullaniciList" target="jTable1" targetPath="elements" updateStrategy="0" immediately="true">
-              <Subbinding sourcePath="${kullaniciId}">
-                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Integer.class"/>
-              </Subbinding>
-              <Subbinding sourcePath="${adi}">
-                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
-              </Subbinding>
-              <Subbinding sourcePath="${soyadi}">
-                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
-              </Subbinding>
-              <Subbinding sourcePath="${kullaniciAdi}">
-                <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
-              </Subbinding>
-            </BindingProperty>
-          </BindingProperties>
         </Component>
       </SubComponents>
     </Container>
@@ -178,25 +137,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField1">
-      <BindingProperties>
-        <BindingProperty name="text" source="jTable1" sourcePath="${selectedElement.adi}" target="jTextField1" targetPath="text" updateStrategy="0" immediately="false">
-          <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
-        </BindingProperty>
-      </BindingProperties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField2">
-      <BindingProperties>
-        <BindingProperty name="text" source="jTable1" sourcePath="${selectedElement.soyadi}" target="jTextField2" targetPath="text" updateStrategy="0" immediately="false">
-          <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
-        </BindingProperty>
-      </BindingProperties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField3">
-      <BindingProperties>
-        <BindingProperty name="text" source="jTable1" sourcePath="${selectedElement.kullaniciAdi}" target="jTextField3" targetPath="text" updateStrategy="0" immediately="false">
-          <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
-        </BindingProperty>
-      </BindingProperties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>

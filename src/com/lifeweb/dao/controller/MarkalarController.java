@@ -10,7 +10,7 @@ import java.util.List;
 
 public class MarkalarController {
 
-    private MarkalarDao marklarDao;
+    private final MarkalarDao marklarDao;
 
     public MarkalarController(MarkalarDao marklarDao) {
         this. marklarDao = marklarDao;

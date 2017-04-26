@@ -5,8 +5,15 @@
  */
 package com.lifeweb.ui.tanimlama;
 
-import com.lifeweb.enitity.Markalar;
+import com.lifeweb.dao.controller.MarkalarController;
+import com.lifeweb.dao.impl.MarkalarDaoImpl;
+import com.lifeweb.dao.pojo.Markalar;
 import com.lifeweb.ui.helper.UIConfig;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,13 +28,13 @@ public class MarkaTanimlamaPanel extends javax.swing.JFrame {
         initComponents();
         setLocation(UIConfig.getLocation(this));
         setAlwaysOnTop(true);
-//        MarkalarJpaController controller = new MarkalarJpaController(EntityHelper.getEmf());
-//        List<Markalar> markalar = controller.findMarkalarEntities();
-//        DefaultListModel model = new DefaultListModel();
-//        for (Markalar marka : markalar) {
-//            model.addElement(marka);
-//        }
-//        jList1.setModel(model);
+        MarkalarController controller = new MarkalarController(new MarkalarDaoImpl());
+        List<Markalar> markalar = controller.getMarkalarList();
+        DefaultListModel model = new DefaultListModel();
+        for (Markalar marka : markalar) {
+            model.addElement(marka);
+        }
+        jList1.setModel(model);
     }
 
     /**
@@ -145,54 +152,54 @@ public class MarkaTanimlamaPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_jList1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        MarkalarJpaController controller = new MarkalarJpaController(EntityHelper.getEmf());
-//        Markalar markalar = new Markalar();
-//        markalar.setMarkaAdi(jTextField2.getText());
-//        markalar.setMarkaDurum("Aktif");
-//        controller.create(markalar);
-//        DefaultListModel model = (DefaultListModel) jList1.getModel();
-//        model.addElement(markalar);
+          Markalar markalar = new Markalar();
+          markalar.setMarkaAdi(jTextField2.getText());
+          markalar.setMarkaDurum("Aktif");
+          MarkalarController controller = new MarkalarController(new MarkalarDaoImpl());
+          controller.createMarkalar(markalar);
+            DefaultListModel model = (DefaultListModel) jList1.getModel();
+            model.addElement(markalar);
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        MarkalarJpaController controller = new MarkalarJpaController(EntityHelper.getEmf());
-//        if (jList1.getSelectedIndex() != -1) {
-//            Markalar oldMarka = (Markalar) jList1.getSelectedValue();
-//            oldMarka.setMarkaAdi(jTextField2.getText());
-//            try {
-//                controller.edit(oldMarka);
-//
-//                DefaultListModel model = (DefaultListModel) jList1.getModel();
-//                model.setElementAt(oldMarka, jList1.getSelectedIndex());
-//            } catch (Exception ex) {
-//                Logger.getLogger(MarkaTanimlamaPanel.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Lütfen önce listeden seçim yapınız");
-//        }
+        MarkalarController controller = new MarkalarController(new MarkalarDaoImpl());
+        if (jList1.getSelectedIndex() != -1) {
+            Markalar oldMarka = (Markalar) jList1.getSelectedValue();
+            oldMarka.setMarkaAdi(jTextField2.getText());
+            try {
+                controller.editMarkalar(oldMarka);
+
+                DefaultListModel model = (DefaultListModel) jList1.getModel();
+                model.setElementAt(oldMarka, jList1.getSelectedIndex());
+            } catch (Exception ex) {
+                Logger.getLogger(MarkaTanimlamaPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Lütfen önce listeden seçim yapınız");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//        MarkalarJpaController controller = new MarkalarJpaController(EntityHelper.getEmf());
-//        if (jList1.getSelectedIndex() != -1) {
-//
-//            int n = JOptionPane.showConfirmDialog(this, "Silmek İstediğinize emin misiniz? Kayıtlı ürün olabilir", "Silme İşlemi", JOptionPane.YES_NO_OPTION);
-//            if (n == JOptionPane.YES_OPTION) {
-//
-//                try {
-//                    Markalar oldMarka = (Markalar) jList1.getSelectedValue();
-//                    controller.destroy(oldMarka.getMarkaId());
-//                    DefaultListModel model = (DefaultListModel) jList1.getModel();
-//                    model.removeElement(oldMarka);
-//                } catch (NonexistentEntityException ex) {
-//                    Logger.getLogger(MarkaTanimlamaPanel.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Lütfen önce listeden seçim yapınız");
-//        }
+        MarkalarController controller = new MarkalarController(new MarkalarDaoImpl());
+        if (jList1.getSelectedIndex() != -1) {
+
+            int n = JOptionPane.showConfirmDialog(this, "Silmek İstediğinize emin misiniz? Kayıtlı ürün olabilir", "Silme İşlemi", JOptionPane.YES_NO_OPTION);
+            if (n == JOptionPane.YES_OPTION) {
+
+                try {
+                    Markalar oldMarka = (Markalar) jList1.getSelectedValue();
+                    controller.removeMarkalar(oldMarka);
+                    DefaultListModel model = (DefaultListModel) jList1.getModel();
+                    model.removeElement(oldMarka);
+                } catch (Exception ex) {
+                    Logger.getLogger(MarkaTanimlamaPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Lütfen önce listeden seçim yapınız");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
