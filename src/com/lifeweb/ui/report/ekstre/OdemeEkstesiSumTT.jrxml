@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OdemeEkstesiSumTT" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="244b1e2d-51ca-4e5c-9fa6-6a7f542dc2d3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="2eb49728-774f-4d62-8ddd-dd9a323a2af4"/>
+	<parameter name="tarih_bas" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tarih_son" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT ot.ODEME_ADI as Odeme_Adi,concat(k.ADI,' ',k.SOYADI) as Kasiyer,sum(otl.TUTAR) as Toplam_Tutar FROM odeme_turleri_line as otl left join odeme_turleri as ot on ot.ODEME_ID=otl.ODEME_ID
+left join satis_fisi as sf on sf.SATIS_FISI_ID=otl.SATIS_FISI_ID left join kullanici as k on k.KULLANICI_ID=sf.SYS_EKLEYEN
+where otl.HESAP_TURU!='iade' and fis_tarihi >=$P{tarih_bas} and fis_tarihi <=$P{tarih_son}
+group by ot.ODEME_ADI,concat(k.ADI,' ',k.SOYADI)
+union
+SELECT concat(ot.ODEME_ADI,' Iade') as Odeme_Adi,concat(k.ADI,' ',k.SOYADI) as Kasiyer,sum(otl.TUTAR) as Toplam_Tutar FROM odeme_turleri_line as otl left join odeme_turleri as ot on ot.ODEME_ID=otl.ODEME_ID
+left join satis_fisi as sf on sf.SATIS_FISI_ID=otl.SATIS_FISI_ID left join kullanici as k on k.KULLANICI_ID=sf.SYS_EKLEYEN
+where otl.HESAP_TURU='iade' and fis_tarihi >=$P{tarih_bas} and fis_tarihi <=$P{tarih_son}
+group by ot.ODEME_ADI,concat(k.ADI,' ',k.SOYADI)]]>
+	</queryString>
+	<field name="Odeme_Adi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Kasiyer" class="java.lang.String"/>
+	<field name="Toplam_Tutar" class="java.lang.Double"/>
+	<variable name="genelToplam" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Toplam_Tutar}]]></variableExpression>
+	</variable>
+	<group name="Odeme_Adi">
+		<groupExpression><![CDATA[$F{Odeme_Adi}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<frame>
+					<reportElement uuid="589af70a-1176-4985-9c41-d268b5158795" mode="Opaque" x="0" y="0" width="326" height="20" forecolor="#B89F7D" backcolor="#70A9C6"/>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement uuid="3924ae8c-5139-4dc4-b188-0f9389ca1003" style="SubTitle" isPrintRepeatedValues="false" x="4" y="0" width="263" height="20" forecolor="#FFFFFF"/>
+						<textElement>
+							<font fontName="Arial" size="16" isBold="false" pdfFontName="Helvetica"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{Odeme_Adi}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20"/>
+		</groupFooter>
+	</group>
+	<group name="Kasiyer">
+		<groupExpression><![CDATA[$F{Kasiyer}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="c5aadb85-34c2-4d56-ab4c-17a3ca23a1a3" positionType="Float" x="4" y="4" width="299" height="20" forecolor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="16" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Kasiyer}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="79a0673a-bca0-4d94-a9c3-0ecf428667ac" style="SubTitle" x="336" y="65" width="217" height="29"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Murat Yanık]]></text>
+			</staticText>
+			<frame>
+				<reportElement uuid="7069a1f2-c285-4718-97bd-9244d252cb1a" mode="Opaque" x="-20" y="0" width="597" height="65" forecolor="#006699" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="c97cd7d7-2827-4276-af6f-5c6a1d819e05" style="Title" x="108" y="0" width="469" height="65"/>
+					<textElement textAlignment="Right">
+						<font size="54" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Çınaraltı Kozmetik]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<frame>
+				<reportElement uuid="93abb0ee-04e2-4872-af95-e99e5583aa15" x="227" y="0" width="328" height="20"/>
+			</frame>
+			<staticText>
+				<reportElement uuid="28dc45d1-d05e-48c9-8da8-fad1c13d61a7" style="Column header" positionType="Float" x="0" y="0" width="328" height="20" forecolor="#000000"/>
+				<textElement>
+					<font fontName="Arial" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Hesap Ekstresi]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<line>
+				<reportElement uuid="9045d87a-4b15-4713-bd08-1de770bb19a3" positionType="FixRelativeToBottom" x="4" y="22" width="332" height="1"/>
+			</line>
+			<frame>
+				<reportElement uuid="f02f3f4b-dde7-4339-bc66-c4ca4f84ba06" x="2" y="0" width="328" height="20"/>
+			</frame>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00 ¤ " isBlankWhenNull="true">
+				<reportElement uuid="c99c9b96-f06f-4188-b7e7-650bb6b1096b" style="Detail" positionType="Float" x="4" y="0" width="324" height="18"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Toplam_Tutar}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="27" splitType="Stretch">
+			<line>
+				<reportElement uuid="c2de784b-3878-4761-bc34-f3e07d1b6702" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField pattern="#,##0.00 ¤">
+				<reportElement uuid="7d94ae25-1faf-4c24-a909-d822dea3aef0" x="106" y="4" width="197" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{genelToplam}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="0bcbfe9d-e86b-4bc9-b7bf-a61fbba95799" x="4" y="4" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Genel Toplam:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement uuid="11a06518-505a-4cb3-8058-9399cb99192c" mode="Opaque" x="2" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#006699"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="941715c8-99f4-494a-a5c2-1278cc6465fd" style="Column header" x="513" y="-1" width="40" height="13" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="4312bad2-97ce-4d31-afc4-6db78fd48e28" style="Column header" x="433" y="-1" width="80" height="13" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="c9e3a0a1-c10f-4148-a9ac-90b8f7444088" style="Column header" x="2" y="0" width="197" height="13" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

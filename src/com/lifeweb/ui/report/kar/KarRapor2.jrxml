@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="KarRapor" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ba70eba1-ec31-44a1-95e5-130dd0054d7f">
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="53"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="066306b6-7c67-4285-bd7c-8663d3f36ff9"/>
+	<parameter name="tarih_bas" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tarih_son" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+URUN_ADI,
+sfl.MIKTAR,
+kdv.KDV_GRUP_ORAN as kdv,
+sfl.BIRIM_FIYATI ,
+sfl.MIKTAR*sfl.BIRIM_FIYATI as tutar,
+(sfl.MIKTAR*sfl.BIRIM_FIYATI)-(sfl.MIKTAR*sfl.BIRIM_FIYATI*sfl.INDIRIM_ORANI/100) as indirimli_fiyat,
+(sfl.MIKTAR*sfl.BIRIM_FIYATI*sfl.INDIRIM_ORANI/100) as indirim,
+sfl.TUTAR as genelToplam,
+(sfl.alis_fiyati + (sfl.alis_fiyati*kdv.KDV_GRUP_ORAN/100)) as alisfiyati
+FROM satis_fisi_line as sfl left join satis_fisi as sf on sf.satis_fisi_id=sfl.satis_fisi_id left join urunler as u
+ on sfl.urun_id=u.urun_id left join kdv_grup as kdv on u.urun_kdv_grup=kdv.kdv_grup_no where fis_tarihi >=$P{tarih_bas} and fis_tarihi <=$P{tarih_son} ]]>
+	</queryString>
+	<field name="URUN_ADI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MIKTAR" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kdv" class="java.lang.Integer"/>
+	<field name="BIRIM_FIYATI" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tutar" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="indirimli_fiyat" class="java.lang.Double"/>
+	<field name="indirim" class="java.lang.Double"/>
+	<field name="genelToplam" class="java.lang.Double"/>
+	<field name="alisfiyati" class="java.lang.Double"/>
+	<variable name="kar" class="java.lang.Double">
+		<variableExpression><![CDATA[($F{genelToplam}-$F{alisfiyati})*$F{MIKTAR}]]></variableExpression>
+	</variable>
+	<variable name="karToplam" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{kar}]]></variableExpression>
+	</variable>
+	<variable name="satisToplam" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{genelToplam}]]></variableExpression>
+	</variable>
+	<variable name="alisToplam" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{alisfiyati}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="5619fca7-a337-47ba-a5b9-331c5e777832" style="SubTitle" x="336" y="65" width="217" height="29"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Serik / Antalya]]></text>
+			</staticText>
+			<frame>
+				<reportElement uuid="8a8a911d-224f-49e9-92a9-0d686292c34b" mode="Opaque" x="-20" y="0" width="597" height="65" forecolor="#006699" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="01cde8bd-f63e-4595-a0fd-e29252bc0fd2" style="Title" x="24" y="0" width="553" height="65"/>
+					<textElement textAlignment="Right">
+						<font size="50" isBold="false"/>
+					</textElement>
+					<text><![CDATA[ÇINARALTI KOZMETİK]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<frame>
+				<reportElement uuid="9e58baf2-7541-4d69-9ddb-75a559161650" x="4" y="0" width="551" height="20"/>
+				<staticText>
+					<reportElement uuid="5e32093b-6067-4316-be2a-ac85fcf76c04" style="Column header" positionType="Float" x="0" y="0" width="238" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[URUN_ADI]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c431dfbd-1c98-4111-bf5d-8474d58254d4" style="Column header" positionType="Float" x="310" y="0" width="88" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[ALIŞ FİYATI]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="2b8baa96-384e-471b-ab79-60ef88efd3e3" style="Column header" positionType="Float" x="402" y="0" width="81" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[SATIŞ FİYATI]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="494e059f-35f7-4efc-88e9-3713000c182b" style="Column header" positionType="Float" x="483" y="0" width="66" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[KAR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="d12a67c2-e223-4778-9ac9-c233a23dfddf" style="Column header" positionType="Float" x="238" y="0" width="60" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[MİKTAR]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<line>
+				<reportElement uuid="4b8d87ef-8144-4029-a2c1-c1f8333d982a" positionType="FixRelativeToBottom" x="4" y="22" width="549" height="1"/>
+			</line>
+			<frame>
+				<reportElement uuid="68d24715-f0ed-4b76-829c-ca24be7730ec" x="4" y="0" width="551" height="20"/>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="4b69fbd8-585d-425a-b8cd-d211e7059d05" style="Detail" positionType="Float" x="0" y="0" width="238" height="18"/>
+					<textElement textAlignment="Left">
+						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{URUN_ADI}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00 ¤" isBlankWhenNull="true">
+					<reportElement uuid="28568d45-7b61-4b09-8494-c9cfcf1bbf34" style="Detail" positionType="Float" x="310" y="0" width="88" height="18"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{alisfiyati}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00 ¤" isBlankWhenNull="true">
+					<reportElement uuid="81330118-d207-4838-bc8f-817c96ceadd9" style="Detail" positionType="Float" x="402" y="0" width="81" height="18"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{genelToplam}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="#,##0.00 ¤" isBlankWhenNull="true">
+					<reportElement uuid="b7eebcc5-a4af-42d9-9d95-1d9c47997978" style="Detail" positionType="Float" x="483" y="0" width="66" height="18"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="10" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{kar}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="860e2329-2ed1-49bb-a254-05f1330e0576" x="238" y="0" width="50" height="18"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{MIKTAR}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement uuid="7eb2493a-a0e1-4e2e-bd4c-ddbf157dc38d" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement uuid="2ec65ed9-bd27-49e2-8ded-781e6493ae5a" mode="Opaque" x="2" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#006699"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="d49c9e86-f066-4695-91fe-67cc2dfdf455" style="Column header" x="513" y="-1" width="40" height="13" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="14a53198-0876-46b1-afa3-67a28235b216" style="Column header" x="433" y="-1" width="80" height="13" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Sayfa "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd MMMMM yyyy EEEEE">
+					<reportElement uuid="da8935a1-bd14-48e1-8203-e0f59929c707" style="Column header" x="2" y="0" width="197" height="13" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="20" splitType="Stretch">
+			<textField pattern="#,##0.00 ¤">
+				<reportElement uuid="bb803423-e202-46bc-93ae-f5715852c69e" x="487" y="0" width="66" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{karToplam}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 ¤">
+				<reportElement uuid="0181d48b-c5c7-4270-8227-0f216a1d5c42" x="406" y="0" width="81" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{satisToplam}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 ¤">
+				<reportElement uuid="dcfa25d4-e325-41f3-a768-7ea5a74942d2" x="314" y="0" width="88" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{alisToplam}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d77c3ddf-90c2-4c1a-83be-23443a21b75b" x="4" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Genel Toplam]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

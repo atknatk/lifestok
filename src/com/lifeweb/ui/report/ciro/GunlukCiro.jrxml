@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GunlukCiro" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c7028d3a-0f06-49ed-a010-e48918fa0668">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="bugun" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="baslik" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT URUN_ADI,sfl.MIKTAR,sfl.BIRIM_FIYATI,
+sfl.MIKTAR*sfl.BIRIM_FIYATI as tutar,
+(sfl.MIKTAR*sfl.BIRIM_FIYATI)-(sfl.MIKTAR*sfl.BIRIM_FIYATI*sfl.INDIRIM_ORANI/100) as indirim,
+sfl.TUTAR as genelToplam,
+concat(kul.adi,' ',kul.soyadi) as isim
+FROM satis_fisi_line  as sfl left join  satis_fisi as sf on sf.SATIS_FISI_ID=sfl.SATIS_FISI_ID left join urunler as ur on ur.urun_id=sfl.urun_id left join kullanici as kul on kul.KULLANICI_ID=sf.sys_ekleyen
+where fis_tarihi =$P{bugun}]]>
+	</queryString>
+	<field name="URUN_ADI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MIKTAR" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BIRIM_FIYATI" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tutar" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="indirim" class="java.lang.Double"/>
+	<field name="genelToplam" class="java.lang.Double"/>
+	<field name="isim" class="java.lang.String"/>
+	<variable name="geneltoplam" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{genelToplam}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement uuid="ac30d566-2ef1-4468-844f-4c1a142f8b2c" x="-20" y="0" width="596" height="64"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="24fbe6bc-347f-4275-a58d-541100c1e894" style="Title" x="0" y="5" width="353" height="33"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ÇINARALTI KOZMETIK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2ce1053e-6291-48b0-b50b-399e15ecc783" style="SubTitle" x="87" y="38" width="200" height="22" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Serik / Antalya]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement uuid="9b973a36-5fff-4529-99ce-def7ddd181bf" x="0" y="0" width="555" height="26"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{baslik}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement uuid="b5a1fef9-5653-4e4f-b0cb-5e206cb030f5" positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="d2437ad1-b54d-44b4-8759-46004c00ac55" style="Column header" x="0" y="19" width="111" height="15"/>
+				<textElement/>
+				<text><![CDATA[ÜRÜN ADI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8e9aa278-4686-4b7b-9e41-e662d439fca6" style="Column header" x="111" y="19" width="111" height="15"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[MİKTAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e85ee06e-2dd3-4e25-9d85-4e2064973b9d" style="Column header" x="222" y="19" width="111" height="15"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[BİRİM FİYATI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b282c275-92bb-4df4-9f9f-88fb3dd9ff1d" style="Column header" x="444" y="19" width="111" height="15"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Genel Toplam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="df46479c-4e0d-4c68-b4e9-1c5fd5e3fc86" style="Column header" x="333" y="19" width="100" height="15"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Kasiyer]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="327f29d1-45b4-4c83-9931-6dcc34aed038" positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="4dfa9409-e6dc-4121-8eff-6be67e7473ea" style="Detail" x="0" y="0" width="111" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{URUN_ADI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="ace9f64c-331c-4090-acc7-4229645750ff" style="Detail" x="111" y="0" width="111" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{MIKTAR}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 ¤">
+				<reportElement uuid="820550d7-b7bb-443f-8180-b9f981a2e10d" style="Detail" x="222" y="0" width="111" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{BIRIM_FIYATI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 ¤">
+				<reportElement uuid="aeecc524-564f-40d2-8c32-b395a2b4a5a5" style="Detail" x="444" y="0" width="111" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{genelToplam}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 ¤">
+				<reportElement uuid="8deabc2e-3479-47a4-a146-a28d0dc154eb" style="Detail" x="353" y="0" width="80" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{isim}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement uuid="5ebbd368-6287-4abe-a621-c5f5d58d12c0" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField pattern="#,##0.00 ¤">
+				<reportElement uuid="7b75dbe4-86a7-4daa-bc32-02fa579f9494" x="444" y="4" width="109" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{geneltoplam}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4df80977-a492-476b-9dfc-42681c1bd442" x="0" y="4" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Genel Toplam]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="17b02ff1-5647-4681-9c47-713add88227f" style="Column header" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Sayfa "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="a376ae5e-4587-43e8-baef-970d2148b9d2" style="Column header" x="513" y="0" width="40" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMMMM yyyy EEEEE">
+				<reportElement uuid="ff1aca3f-a78d-4f94-a730-59ae5f312a8c" style="Column header" x="0" y="0" width="197" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
