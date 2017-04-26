@@ -1309,7 +1309,7 @@ private static ProgressStatusBarItem progress;
         anaPanel.setPreferredSize(new Dimension(450, 450));
         dialFrame = new DialFrame();
         clock.setFrame(dialFrame);
-        upperLabel = new DialLabel(clock, 0.4, 90, "ÇINARALTI KOZMETİK");
+        upperLabel = new DialLabel(clock, 0.4, 90, "Ateş Telekom");
         upperLabel.setColor(Color.gray);
         clock.addDrawable(upperLabel);
         lowerLabel = new DialLabel(clock, 0.4, -90, "Antalya / Serik");

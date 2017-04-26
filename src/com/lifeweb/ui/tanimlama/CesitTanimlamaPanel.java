@@ -6,8 +6,15 @@
 package com.lifeweb.ui.tanimlama;
 
 
-import com.lifeweb.enitity.UrunCesit;
+import com.lifeweb.dao.controller.UrunCesitController;
+import com.lifeweb.dao.impl.UrunCesitDaoImpl;
+import com.lifeweb.dao.pojo.UrunCesit;
 import com.lifeweb.ui.helper.UIConfig;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,15 +29,20 @@ public class CesitTanimlamaPanel extends javax.swing.JFrame {
         initComponents();
         setLocation(UIConfig.getLocation(this));
         setAlwaysOnTop(true);
-//        UrunCesitJpaController controller = new UrunCesitJpaController(EntityHelper.getEmf());
-//        List<UrunCesit> markalar = controller.findUrunCesitEntities();
-//        DefaultListModel model = new DefaultListModel();
-//        for (UrunCesit marka : markalar) {
-//            model.addElement(marka);
-//        }
-//        jList1.setModel(model);
+        loadData();
     }
 
+    private void loadData(){
+        UrunCesitController controller = new UrunCesitController(new UrunCesitDaoImpl());
+        List<UrunCesit> markalar = controller.getUrunCesitList();
+        DefaultListModel model = new DefaultListModel();
+        for (UrunCesit marka : markalar) {
+            model.addElement(marka);
+        }
+        jList1.setModel(model);
+    
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,54 +158,50 @@ public class CesitTanimlamaPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_jList1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        UrunCesitJpaController controller = new UrunCesitJpaController(EntityHelper.getEmf());
-//        UrunCesit markalar = new UrunCesit();
-//        markalar.setCesitAdi(jTextField2.getText());
-//        markalar.setCesitDurum("Aktif");
-//        controller.create(markalar);
-//        DefaultListModel model = (DefaultListModel) jList1.getModel();
-//        model.addElement(markalar);
-
+        UrunCesitController controller = new UrunCesitController(new UrunCesitDaoImpl());
+        UrunCesit markalar = new UrunCesit();
+        markalar.setCesitAdi(jTextField2.getText());
+        markalar.setCesitDurum("Aktif");
+        controller.createUrunCesit(markalar);
+        loadData();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        UrunCesitJpaController controller = new UrunCesitJpaController(EntityHelper.getEmf());
-//        if (jList1.getSelectedIndex() != -1) {
-//            UrunCesit oldMarka = (UrunCesit) jList1.getSelectedValue();
-//            oldMarka.setCesitAdi(jTextField2.getText());
-//            try {
-//                controller.edit(oldMarka);
-//
-//                DefaultListModel model = (DefaultListModel) jList1.getModel();
-//                model.setElementAt(oldMarka, jList1.getSelectedIndex());
-//            } catch (Exception ex) {
-//                Logger.getLogger(CesitTanimlamaPanel.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Lütfen önce listeden seçim yapınız");
-//        }
+        UrunCesitController controller = new UrunCesitController(new UrunCesitDaoImpl());
+        if (jList1.getSelectedIndex() != -1) {
+            UrunCesit oldMarka = (UrunCesit) jList1.getSelectedValue();
+            oldMarka.setCesitAdi(jTextField2.getText());
+            try {
+                controller.editUrunCesit(oldMarka);
+
+                loadData();
+            } catch (Exception ex) {
+                Logger.getLogger(CesitTanimlamaPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Lütfen önce listeden seçim yapınız");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//        UrunCesitJpaController controller = new UrunCesitJpaController(EntityHelper.getEmf());
-//        if (jList1.getSelectedIndex() != -1) {
-//
-//            int n = JOptionPane.showConfirmDialog(this, "Silmek İstediğinize emin misiniz? Kayıtlı ürün olabilir", "Silme İşlemi", JOptionPane.YES_NO_OPTION);
-//            if (n == JOptionPane.YES_OPTION) {
-//
-//                try {
-//                    UrunCesit oldMarka = (UrunCesit) jList1.getSelectedValue();
-//                    controller.destroy(oldMarka.getCesitId());
-//                    DefaultListModel model = (DefaultListModel) jList1.getModel();
-//                    model.removeElement(oldMarka);
-//                } catch (NonexistentEntityException ex) {
-//                    Logger.getLogger(CesitTanimlamaPanel.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Lütfen önce listeden seçim yapınız");
-//        }
+        UrunCesitController controller = new UrunCesitController(new UrunCesitDaoImpl());
+        if (jList1.getSelectedIndex() != -1) {
+
+            int n = JOptionPane.showConfirmDialog(this, "Silmek İstediğinize emin misiniz? Kayıtlı ürün olabilir", "Silme İşlemi", JOptionPane.YES_NO_OPTION);
+            if (n == JOptionPane.YES_OPTION) {
+
+                try {
+                    UrunCesit oldMarka = (UrunCesit) jList1.getSelectedValue();
+                    controller.removeUrunCesit(oldMarka);
+                loadData();
+                } catch (Exception ex) {
+                    Logger.getLogger(CesitTanimlamaPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Lütfen önce listeden seçim yapınız");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

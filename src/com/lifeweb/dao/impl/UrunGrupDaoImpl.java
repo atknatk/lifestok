@@ -32,7 +32,7 @@ private final static Logger LOGGER = Logger.getLogger(UrunGrupDaoImpl.class
             pstmt = con.prepareStatement("INSERT INTO urun_grup ( URUN_GRUP_ADI, URUN_GRUP_DURUM)"
                     + " VALUES (?, ?)");
             pstmt.setString(1, urunGrup.getUrunGrupAdi());
-            pstmt.setString(3, urunGrup.getUrunGrupDurum());
+            pstmt.setString(2, urunGrup.getUrunGrupDurum());
             pstmt.executeUpdate();
             pstmt.close();
         } catch (SQLException e) {

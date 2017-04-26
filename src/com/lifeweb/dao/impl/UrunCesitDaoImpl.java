@@ -32,7 +32,7 @@ private final static Logger LOGGER = Logger.getLogger(UrunCesitDaoImpl.class
             pstmt = con.prepareStatement("INSERT INTO urun_cesit ( CESIT_ADI, CESIT_DURUM)"
                     + " VALUES (?, ?)");
             pstmt.setString(1, urunCesit.getCesitAdi());
-            pstmt.setString(3, urunCesit.getCesitDurum());
+            pstmt.setString(2, urunCesit.getCesitDurum());
             pstmt.executeUpdate();
             pstmt.close();
         } catch (SQLException e) {

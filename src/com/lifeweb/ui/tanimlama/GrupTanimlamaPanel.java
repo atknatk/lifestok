@@ -6,8 +6,15 @@
 package com.lifeweb.ui.tanimlama;
 
 
-import com.lifeweb.enitity.UrunGrup;
+import com.lifeweb.dao.controller.UrunGrupController;
+import com.lifeweb.dao.impl.UrunGrupDaoImpl;
+import com.lifeweb.dao.pojo.UrunGrup;
 import com.lifeweb.ui.helper.UIConfig;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,15 +29,18 @@ public class GrupTanimlamaPanel extends javax.swing.JFrame {
         initComponents();
         setLocation(UIConfig.getLocation(this));
         setAlwaysOnTop(true);
-//        UrunGrupJpaController controller = new UrunGrupJpaController(EntityHelper.getEmf());
-//        List<UrunGrup> markalar = controller.findUrunGrupEntities();
-//        DefaultListModel model = new DefaultListModel();
-//        for (UrunGrup marka : markalar) {
-//            model.addElement(marka);
-//        }
-//        jList1.setModel(model);
+    
     }
 
+    private void loadData(){
+        UrunGrupController controller = new UrunGrupController(new UrunGrupDaoImpl());
+        List<UrunGrup> markalar = controller.getUrunGrupList();
+        DefaultListModel model = new DefaultListModel();
+        for (UrunGrup marka : markalar) {
+            model.addElement(marka);
+        }
+        jList1.setModel(model);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,54 +156,51 @@ public class GrupTanimlamaPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_jList1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        UrunGrupJpaController controller = new UrunGrupJpaController(EntityHelper.getEmf());
-//        UrunGrup markalar = new UrunGrup();
-//        markalar.setUrunGrupAdi(jTextField2.getText());
-//        markalar.setUrunGrupDurum("Aktif");
-//        controller.create(markalar);
-//        DefaultListModel model = (DefaultListModel) jList1.getModel();
-//        model.addElement(markalar);
-
+        UrunGrupController controller = new UrunGrupController(new UrunGrupDaoImpl());
+        UrunGrup markalar = new UrunGrup();
+        markalar.setUrunGrupAdi(jTextField2.getText());
+        markalar.setUrunGrupDurum("Aktif");
+        controller.createUrunGrup(markalar);
+        DefaultListModel model = (DefaultListModel) jList1.getModel();
+        model.addElement(markalar);
+         loadData();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        UrunGrupJpaController controller = new UrunGrupJpaController(EntityHelper.getEmf());
-//        if (jList1.getSelectedIndex() != -1) {
-//            UrunGrup oldMarka = (UrunGrup) jList1.getSelectedValue();
-//            oldMarka.setUrunGrupAdi(jTextField2.getText());
-//            try {
-//                controller.edit(oldMarka);
-//
-//                DefaultListModel model = (DefaultListModel) jList1.getModel();
-//                model.setElementAt(oldMarka, jList1.getSelectedIndex());
-//            } catch (Exception ex) {
-//                Logger.getLogger(GrupTanimlamaPanel.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Lütfen önce listeden seçim yapınız");
-//        }
+      UrunGrupController controller = new UrunGrupController(new UrunGrupDaoImpl());
+          if (jList1.getSelectedIndex() != -1) {
+            UrunGrup oldMarka = (UrunGrup) jList1.getSelectedValue();
+            oldMarka.setUrunGrupAdi(jTextField2.getText());
+            try {
+                controller.editUrunGrup(oldMarka);
+loadData();
+            } catch (Exception ex) {
+                Logger.getLogger(GrupTanimlamaPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Lütfen önce listeden seçim yapınız");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//        UrunGrupJpaController controller = new UrunGrupJpaController(EntityHelper.getEmf());
-//        if (jList1.getSelectedIndex() != -1) {
-//
-//            int n = JOptionPane.showConfirmDialog(this, "Silmek İstediğinize emin misiniz? Kayıtlı ürün olabilir", "Silme İşlemi", JOptionPane.YES_NO_OPTION);
-//            if (n == JOptionPane.YES_OPTION) {
-//
-//                try {
-//                    UrunGrup oldMarka = (UrunGrup) jList1.getSelectedValue();
-//                    controller.destroy(oldMarka.getUrunGrupId());
-//                    DefaultListModel model = (DefaultListModel) jList1.getModel();
-//                    model.removeElement(oldMarka);
-//                } catch (NonexistentEntityException ex) {
-//                    Logger.getLogger(GrupTanimlamaPanel.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Lütfen önce listeden seçim yapınız");
-//        }
+      UrunGrupController controller = new UrunGrupController(new UrunGrupDaoImpl());
+          if (jList1.getSelectedIndex() != -1) {
+
+            int n = JOptionPane.showConfirmDialog(this, "Silmek İstediğinize emin misiniz? Kayıtlı ürün olabilir", "Silme İşlemi", JOptionPane.YES_NO_OPTION);
+            if (n == JOptionPane.YES_OPTION) {
+
+                try {
+                    UrunGrup oldMarka = (UrunGrup) jList1.getSelectedValue();
+                    controller.removeUrunGrup(oldMarka);
+                    loadData();
+                } catch (Exception ex) {
+                    Logger.getLogger(GrupTanimlamaPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Lütfen önce listeden seçim yapınız");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
