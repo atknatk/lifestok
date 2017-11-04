@@ -3,20 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/ui/tanimlama/CesitTanimlamaPanel.java</file>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/dao/controller/KullaniciController.java</file>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/dao/impl/KullaniciDaoImpl.java</file>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/ui/urun/UrunCrudUI.java</file>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/ui/indirimler/CokUrunIndirim.java</file>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/ui/tanimlama/GrupTanimlamaPanel.java</file>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/ui/kullanicilar/KullaniciListesi.java</file>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/dao/impl/UrunGrupDaoImpl.java</file>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/enitity/helper/DaoHelper.java</file>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/ui/tanimlama/MarkaTanimlamaPanel.java</file>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/dao/impl/MarkalarDaoImpl.java</file>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/dao/impl/UrunCesitDaoImpl.java</file>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/dao/impl/UrunlerDaoImpl.java</file>
-            <file>file:/C:/Users/AtiTuvi-PC/Desktop/Stok%20Takip%20v2/src/com/lifeweb/ui/MainUI.java</file>
+            <file>file:/D:/Codes/Barkod/lifestok/src/com/lifeweb/ui/helper/Helper.java</file>
+            <file>file:/D:/Codes/Barkod/lifestok/src/com/lifeweb/enitity/helper/DaoHelper.java</file>
+            <file>file:/D:/Codes/Barkod/lifestok/src/com/lifeweb/ui/MainUI.java</file>
+            <file>file:/D:/Codes/Barkod/lifestok/src/com/lifeweb/ui/UrunlerTableModel.java</file>
+            <file>file:/D:/Codes/Barkod/lifestok/src/com/lifeweb/ui/MalGirisi.java</file>
         </group>
     </open-files>
 </project-private>

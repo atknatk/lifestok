@@ -284,6 +284,7 @@ public class UrunCrudUI extends javax.swing.JFrame {
         durum.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pasif", "Aktif" }));
         durum.setSelectedIndex(1);
 
+        jCheckBox1.setSelected(true);
         jCheckBox1.setText("Diğer Şübeye Kaydet");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

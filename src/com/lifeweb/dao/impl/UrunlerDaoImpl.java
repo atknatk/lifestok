@@ -30,8 +30,8 @@ public class UrunlerDaoImpl implements UrunlerDao {
 
     @Override
     public int createUrun(Urunler urunler) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
+        Connection con;
+        PreparedStatement pstmt;
         try {
             con = DaoHelper.instance().getConnection();
             pstmt = con.prepareStatement("INSERT INTO urunler(BARKOD_ID, BARKOD_TUR, BARKOD_TIP, URUN_ADI,"
@@ -79,9 +79,10 @@ public class UrunlerDaoImpl implements UrunlerDao {
     @Override
     public int createUrunDigerSube(Urunler urunler) {
         Connection con = null;
-        PreparedStatement pstmt = null;
+        PreparedStatement pstmt;
         try {
-            con = DaoHelper.instance().getConnection(Helper.instance().loadProperty());
+            String ip = Helper.getConfigs().get("diger_sube_ip");
+            con = DaoHelper.instance().getConnection(ip);
             pstmt = con.prepareStatement("INSERT INTO urunler(BARKOD_ID, BARKOD_TUR, BARKOD_TIP, URUN_ADI,"
                     + " BIRIM_REF, URUN_ALIS_FIYAT, URUN_SATIS_FIYAT, URUN_SATIS_FIYAT2,"
                     + " URUN_SATIS_FIYAT3, URUN_KDV_GRUP, URUN_AKTIF, SYS_EKLEYEN, SYS_ETARIH,"
@@ -135,9 +136,9 @@ public class UrunlerDaoImpl implements UrunlerDao {
 
     @Override
     public List<Urunler> getUrunList() {
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
+        Connection con;
+        PreparedStatement pstmt;
+        ResultSet rs;
         ArrayList<Urunler> list = new ArrayList<>();
 
         try {

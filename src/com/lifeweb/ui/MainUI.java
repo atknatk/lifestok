@@ -22,6 +22,7 @@ import com.lifeweb.Backup;
 import com.lifeweb.dao.pojo.Kullanici;
 import com.lifeweb.ui.carihesap.CariHesapUI;
 import com.lifeweb.ui.fisler.FislerUI;
+import com.lifeweb.ui.helper.Helper;
 import com.lifeweb.ui.indirimler.CokTarihIndirim;
 import com.lifeweb.ui.indirimler.TekTarihIndirim;
 import com.lifeweb.ui.indirimler.TekUrunIndirimDuzenle;
@@ -52,20 +53,16 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Date;
-import java.util.Locale;
-import java.util.Locale;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import org.jdesktop.swingx.icon.EmptyIcon;
 
 /**
  *
@@ -994,9 +991,9 @@ public final class MainUI extends javax.swing.JFrame {
     private void jMenuItem40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem40ActionPerformed
         int n = JOptionPane.showConfirmDialog(MainUI.this, "Diğer şubede değişiklik yapmak istiyor musunuz ?", "Şube Seçimi", JOptionPane.YES_NO_CANCEL_OPTION);
         if (n == JOptionPane.YES_OPTION) {
-            new MalGirisi().setVisible(VISIBILTY_SHOW);
+            new MalGirisi(true).setVisible(VISIBILTY_SHOW);
         } else if (n == JOptionPane.NO_OPTION) {
-            new MalGirisi().setVisible(VISIBILTY_SHOW);
+            new MalGirisi(false).setVisible(VISIBILTY_SHOW);
         }
 
     }//GEN-LAST:event_jMenuItem40ActionPerformed
@@ -1295,6 +1292,7 @@ private static ProgressStatusBarItem progress;
     private DialLabel upperLabel, lowerLabel;
 
     public void getDemoPanel() {
+        Helper.instance();
         anaPanel.removeAll();
         anaPanel.setLayout(new BorderLayout());
         clock = new Clock();
@@ -1309,7 +1307,7 @@ private static ProgressStatusBarItem progress;
         anaPanel.setPreferredSize(new Dimension(450, 450));
         dialFrame = new DialFrame();
         clock.setFrame(dialFrame);
-        upperLabel = new DialLabel(clock, 0.4, 90, "Ateş Telekom");
+        upperLabel = new DialLabel(clock, 0.4, 90, Helper.getConfigs().get("title"));
         upperLabel.setColor(Color.gray);
         clock.addDrawable(upperLabel);
         lowerLabel = new DialLabel(clock, 0.4, -90, "Antalya / Serik");
@@ -1355,6 +1353,7 @@ private static ProgressStatusBarItem progress;
         try {
             //set the properties value
             prop.setProperty("diger_sube_ip", "192.168.0.1");
+            prop.setProperty("title", "Çınaraltı Kozmetik");
 
             prop.store(new FileOutputStream("config.properties"), null);
 
