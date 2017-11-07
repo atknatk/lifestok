@@ -39,6 +39,7 @@ public class MalGirisi extends javax.swing.JFrame {
             jButton2.setVisible(false);
         }
         jProgressBar1.setVisible(false);
+        table.setModel(quickTableFilterField1.getDisplayTableModel());
         table.setRowResizable(true);
         table.setVariousRowHeights(true);
         table.setSelectInsertedRows(false);
@@ -46,9 +47,7 @@ public class MalGirisi extends javax.swing.JFrame {
         _header.setAutoFilterEnabled(true);
         _header.setUseNativeHeaderRenderer(true);
         table.setTableHeader(_header);
-        quickTableFilterField1.setTableModel(table.getModel());
-        quickTableFilterField1.setColumnIndices(new int[]{0});
-        quickTableFilterField1.setTable(table);
+       
         ((JideTableTransferHandler) table.getTransferHandler()).setAcceptImport(true);
         table.setNonContiguousCellSelection(true);
         table.setDropMode(DropMode.INSERT);
@@ -96,8 +95,6 @@ public class MalGirisi extends javax.swing.JFrame {
                 }
             }
         };
-        quickTableFilterField1.getDisplayTableModel().addTableModelListener(_listener);
-
         table.addCellEditorListener(new com.jidesoft.grid.JideCellEditorListener() {
             @Override
             public void editingStarted(javax.swing.event.ChangeEvent evt) {
@@ -142,6 +139,16 @@ public class MalGirisi extends javax.swing.JFrame {
             }
         });
 
+        
+        
+        quickTableFilterField1.setColumnIndices(new int[]{0});
+        quickTableFilterField1.setTable(table);
+         quickTableFilterField1.setSearchingDelay(300);
+         quickTableFilterField1.setHintText("Ara...");
+        quickTableFilterField1.getDisplayTableModel().addTableModelListener(_listener);
+
+
+        
     }
 
     public static double round(double unrounded) {
@@ -165,9 +172,10 @@ public class MalGirisi extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        table.setModel(UrunlerTableModel.urunlerTableModel(IS_DIGER_SUBE));
         table.setSortable(false);
         jScrollPane2.setViewportView(table);
+
+        quickTableFilterField1.setTableModel(UrunlerTableModel.urunlerTableModel(IS_DIGER_SUBE));
 
         jButton1.setText("Kaydet");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -345,6 +353,7 @@ public class MalGirisi extends javax.swing.JFrame {
             PreparedStatement pstmt = null;
             try {
                 con = DaoHelper.instance().getConnection(Helper.getConfigs().get("diger_sube_ip"));
+                // con = DaoHelper.instance().getConnection();
                 for (int i = 0; i < rowCount; i++) {
                     final int cur = i;
                     Double alis = 0.00;
@@ -386,7 +395,7 @@ public class MalGirisi extends javax.swing.JFrame {
                     pstmt.setDouble(2, satis);
                     pstmt.setDouble(3, satis2);
                     pstmt.setDouble(4, satis3);
-                    pstmt.setString(6, barkod);
+                    pstmt.setString(5, barkod);
                     pstmt.executeUpdate();
                     System.out.println(i);
                     try {

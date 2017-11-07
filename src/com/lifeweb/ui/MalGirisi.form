@@ -61,16 +61,20 @@
       <SubComponents>
         <Component class="com.jidesoft.grid.SortableTable" name="table">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="UrunlerTableModel.urunlerTableModel(IS_DIGER_SUBE)" type="code"/>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0"/>
             </Property>
             <Property name="sortable" type="boolean" value="false"/>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
     <Component class="com.jidesoft.grid.QuickTableFilterField" name="quickTableFilterField1">
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="quickTableFilterField1.setTableModel(UrunlerTableModel.urunlerTableModel(IS_DIGER_SUBE));"/>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="MalGirisi_quickTableFilterField1"/>
       </AuxValues>
     </Component>
