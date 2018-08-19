@@ -582,7 +582,7 @@ public class UrunCrudUI extends javax.swing.JFrame {
 
     private void onayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onayActionPerformed
         if (tip == UrunPanelTip.KAYDET) {
-            kaydet();
+            // kaydet();
             if (jCheckBox1.isSelected()) {
                 kaydetDigerSube();
             }

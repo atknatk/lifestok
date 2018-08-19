@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import javafx.concurrent.Task;
 import javax.swing.DropMode;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
@@ -141,7 +140,7 @@ public class MalGirisi extends javax.swing.JFrame {
 
         
         
-        quickTableFilterField1.setColumnIndices(new int[]{0});
+        quickTableFilterField1.setColumnIndices(new int[]{0,1});
         quickTableFilterField1.setTable(table);
          quickTableFilterField1.setSearchingDelay(300);
          quickTableFilterField1.setHintText("Ara...");

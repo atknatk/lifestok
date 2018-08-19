@@ -106,13 +106,13 @@ public class UrunlerDaoImpl implements UrunlerDao {
             pstmt.setInt(15, 1);
             pstmt.setString(16, urunler.getUrunBeden());
             pstmt.setString(17, urunler.getUrunRenk());
-            pstmt.setString(18, urunler.getUrunCesit().getCesitAdi());
+            pstmt.setString(18, urunler.getUrunCesit() != null ? urunler.getUrunCesit().getCesitAdi(): null);
             pstmt.setDouble(19, urunler.getUrunStokSeviye());
             pstmt.setString(20, urunler.getUrunOzelkod());
             pstmt.setString(21, urunler.getUrunSerino());
             pstmt.setString(22, urunler.getUrunNot());
-            pstmt.setString(23, urunler.getMarkaRef().getMarkaAdi());
-            pstmt.setString(24, urunler.getGrupRef().getUrunGrupAdi());
+            pstmt.setString(23, urunler.getMarkaRef() != null ? urunler.getMarkaRef().getMarkaAdi() : null);
+            pstmt.setString(24, urunler.getGrupRef() != null ? urunler.getGrupRef().getUrunGrupAdi() : null);
             pstmt.setDate(25, new Date(System.currentTimeMillis()));
             pstmt.setString(26, urunler.getUrunDurum());
             pstmt.setDouble(27, urunler.getUrunMinumumStok() == null ? 0 : urunler.getUrunMinumumStok());
@@ -120,6 +120,8 @@ public class UrunlerDaoImpl implements UrunlerDao {
             pstmt.executeUpdate();
             pstmt.close();
         } catch (SQLException e) {
+            LOGGER.logp(Level.SEVERE, LOGGER.getName(), IndirimlerDaoImpl.class.getEnclosingMethod().getName(), e.getLocalizedMessage(), e);
+        } catch (Exception e) {
             LOGGER.logp(Level.SEVERE, LOGGER.getName(), IndirimlerDaoImpl.class.getEnclosingMethod().getName(), e.getLocalizedMessage(), e);
         } finally {
             if (con != null) {
