@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/codes/lifestok/src/com/lifeweb/ui/urun/UrunUI.java</file>
+            <file>file:/D:/codes/lifestok/src/com/lifeweb/ui/islemler/MalGirisiTableModel.java</file>
+            <file>file:/D:/codes/lifestok/src/com/lifeweb/ui/urun/UrunCrudUI.java</file>
+            <file>file:/D:/codes/lifestok/src/com/lifeweb/dao/impl/UrunlerDaoImpl.java</file>
+            <file>file:/D:/codes/lifestok/src/com/lifeweb/Main.java</file>
+            <file>file:/D:/codes/lifestok/src/com/lifeweb/ui/MalGirisi.java</file>
+        </group>
     </open-files>
 </project-private>
