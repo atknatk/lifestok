@@ -29,14 +29,14 @@ public class MalGirisi extends javax.swing.JFrame {
 
     private final boolean IS_DIGER_SUBE;
     private Task task;
-    private FiyatEsleTask fiyatEsleTask;
+//    private FiyatEsleTask fiyatEsleTask;
 
     public MalGirisi(boolean isDigerSube) {
         IS_DIGER_SUBE = isDigerSube;
         initComponents();
-        if (isDigerSube) {
-            jButton2.setVisible(false);
-        }
+//        if (isDigerSube) {
+//            jButton2.setVisible(false);
+//        }
         jProgressBar1.setVisible(false);
         table.setModel(quickTableFilterField1.getDisplayTableModel());
         table.setRowResizable(true);
@@ -167,7 +167,6 @@ public class MalGirisi extends javax.swing.JFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -187,13 +186,6 @@ public class MalGirisi extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("-");
 
-        jButton2.setText("Fiyatları Eşle");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -202,8 +194,7 @@ public class MalGirisi extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(110, 110, 110)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)))
@@ -215,8 +206,7 @@ public class MalGirisi extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton2))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -323,15 +313,9 @@ public class MalGirisi extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        fiyatEsleTask = new FiyatEsleTask();
-        fiyatEsleTask.start();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private static javax.swing.JProgressBar jProgressBar1;
@@ -340,93 +324,93 @@ public class MalGirisi extends javax.swing.JFrame {
     private com.jidesoft.grid.SortableTable table;
     // End of variables declaration//GEN-END:variables
 
-    private void fiyatEsle() {
-        jButton1.setEnabled(false);
-        jButton2.setEnabled(false);
-        if (!table.isEditing()) {
-            TableModel model = table.getModel();
-            final int rowCount = model.getRowCount();
-            jProgressBar1.setMaximum(rowCount);
-            jProgressBar1.setVisible(true);
-            Connection con = null;
-            PreparedStatement pstmt = null;
-            try {
-                con = DaoHelper.instance().getConnection(Helper.getConfigs().get("diger_sube_ip"));
-                // con = DaoHelper.instance().getConnection();
-                for (int i = 0; i < rowCount; i++) {
-                    final int cur = i;
-                    Double alis = 0.00;
-                    Double satis = 0.00;
-                    Double satis2 = 0.00;
-                    Double satis3 = 0.00;
-                    if (model.getValueAt(i, 2) != null) {
-                        try {
-
-                            alis = Double.parseDouble(model.getValueAt(i, 2).toString());
-                        } catch (Exception e) {
-                        }
-                    }
-                    if (model.getValueAt(i, 3) != null) {
-                        try {
-                            satis = Double.parseDouble(model.getValueAt(i, 3).toString());
-                        } catch (Exception e) {
-                        }
-                    }
-                    if (model.getValueAt(i, 4) != null) {
-                        try {
-                            satis2 = Double.parseDouble(model.getValueAt(i, 4).toString());
-
-                        } catch (Exception e) {
-                        }
-                    }
-                    if (model.getValueAt(i, 5) != null) {
-                        try {
-                            satis3 = Double.parseDouble(model.getValueAt(i, 5).toString());
-
-                        } catch (Exception e) {
-                        }
-                    }
-                  
-                    String barkod = model.getValueAt(i, 0).toString();
-                    pstmt = con.prepareStatement("UPDATE urunler SET URUN_ALIS_FIYAT=?,"
-                            + "URUN_SATIS_FIYAT=?,URUN_SATIS_FIYAT2=?,URUN_SATIS_FIYAT3=? where BARKOD_ID=?");
-                    pstmt.setDouble(1, alis);
-                    pstmt.setDouble(2, satis);
-                    pstmt.setDouble(3, satis2);
-                    pstmt.setDouble(4, satis3);
-                    pstmt.setString(5, barkod);
-                    pstmt.executeUpdate();
-                    System.out.println(i);
-                    try {
-                        SwingUtilities.invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                jProgressBar1.setValue(cur);
-                            }
-                        });
-                    } catch (Exception e) {
-
-                    }
-                }
-                pstmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                jButton1.setEnabled(true);
-                jButton2.setEnabled(true);
-            }
-            jProgressBar1.setVisible(false);
-            JOptionPane.showMessageDialog(this, "Kaydedildi");
-        } else {
-            JOptionPane.showMessageDialog(this, "Tabloda yazma aktif bırakmak için herangi bi ürün adına tıkla");
-        }
-
-        jButton1.setEnabled(true);
-        jButton2.setEnabled(true);
-    }
+//    private void fiyatEsle() {
+//        jButton1.setEnabled(false);
+//        jButton2.setEnabled(false);
+//        if (!table.isEditing()) {
+//            TableModel model = table.getModel();
+//            final int rowCount = model.getRowCount();
+//            jProgressBar1.setMaximum(rowCount);
+//            jProgressBar1.setVisible(true);
+//            Connection con = null;
+//            PreparedStatement pstmt = null;
+//            try {
+//                con = DaoHelper.instance().getConnection(Helper.getConfigs().get("diger_sube_ip"));
+//                // con = DaoHelper.instance().getConnection();
+//                for (int i = 0; i < rowCount; i++) {
+//                    final int cur = i;
+//                    Double alis = 0.00;
+//                    Double satis = 0.00;
+//                    Double satis2 = 0.00;
+//                    Double satis3 = 0.00;
+//                    if (model.getValueAt(i, 2) != null) {
+//                        try {
+//
+//                            alis = Double.parseDouble(model.getValueAt(i, 2).toString());
+//                        } catch (Exception e) {
+//                        }
+//                    }
+//                    if (model.getValueAt(i, 3) != null) {
+//                        try {
+//                            satis = Double.parseDouble(model.getValueAt(i, 3).toString());
+//                        } catch (Exception e) {
+//                        }
+//                    }
+//                    if (model.getValueAt(i, 4) != null) {
+//                        try {
+//                            satis2 = Double.parseDouble(model.getValueAt(i, 4).toString());
+//
+//                        } catch (Exception e) {
+//                        }
+//                    }
+//                    if (model.getValueAt(i, 5) != null) {
+//                        try {
+//                            satis3 = Double.parseDouble(model.getValueAt(i, 5).toString());
+//
+//                        } catch (Exception e) {
+//                        }
+//                    }
+//                  
+//                    String barkod = model.getValueAt(i, 0).toString();
+//                    pstmt = con.prepareStatement("UPDATE urunler SET URUN_ALIS_FIYAT=?,"
+//                            + "URUN_SATIS_FIYAT=?,URUN_SATIS_FIYAT2=?,URUN_SATIS_FIYAT3=? where BARKOD_ID=?");
+//                    pstmt.setDouble(1, alis);
+//                    pstmt.setDouble(2, satis);
+//                    pstmt.setDouble(3, satis2);
+//                    pstmt.setDouble(4, satis3);
+//                    pstmt.setString(5, barkod);
+//                    pstmt.executeUpdate();
+//                    System.out.println(i);
+//                    try {
+//                        SwingUtilities.invokeLater(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                jProgressBar1.setValue(cur);
+//                            }
+//                        });
+//                    } catch (Exception e) {
+//
+//                    }
+//                }
+//                pstmt.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//                jButton1.setEnabled(true);
+//                jButton2.setEnabled(true);
+//            }
+//            jProgressBar1.setVisible(false);
+//            JOptionPane.showMessageDialog(this, "Kaydedildi");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Tabloda yazma aktif bırakmak için herangi bi ürün adına tıkla");
+//        }
+//
+//        jButton1.setEnabled(true);
+//        jButton2.setEnabled(true);
+//    }
 
     private void metot() {
         jButton1.setEnabled(false);
-        jButton2.setEnabled(false);
+//        jButton2.setEnabled(false);
         if (!table.isEditing()) {
             TableModel model = table.getModel();
             final int rowCount = model.getRowCount();
@@ -435,11 +419,11 @@ public class MalGirisi extends javax.swing.JFrame {
             Connection con = null;
             PreparedStatement pstmt = null;
             try {
-                if (IS_DIGER_SUBE) {
-                    con = DaoHelper.instance().getConnection(Helper.getConfigs().get("diger_sube_ip"));
-                } else {
+//                if (IS_DIGER_SUBE) {
+//                    con = DaoHelper.instance().getConnection(Helper.getConfigs().get("diger_sube_ip"));
+//                } else {
                     con = DaoHelper.instance().getConnection();
-                }
+//                }
                 for (int i = 0; i < rowCount; i++) {
                     final int cur = i;
                     Double alis = 0.00;
@@ -508,7 +492,7 @@ public class MalGirisi extends javax.swing.JFrame {
             } catch (SQLException e) {
                 e.printStackTrace();
                 jButton1.setEnabled(true);
-                jButton2.setEnabled(true);
+//                jButton2.setEnabled(true);
             }
             jProgressBar1.setVisible(false);
             JOptionPane.showMessageDialog(this, "Kaydedildi");
@@ -517,7 +501,7 @@ public class MalGirisi extends javax.swing.JFrame {
         }
 
         jButton1.setEnabled(true);
-        jButton2.setEnabled(true);
+//        jButton2.setEnabled(true);
     }
 
     private class Task extends Thread {
@@ -530,13 +514,13 @@ public class MalGirisi extends javax.swing.JFrame {
             metot();
         }
     }
-
-    private class FiyatEsleTask extends Thread {
-        public FiyatEsleTask() {
-        }
-        @Override
-        public void run() {
-            fiyatEsle();
-        }
-    }
+//
+//    private class FiyatEsleTask extends Thread {
+//        public FiyatEsleTask() {
+//        }
+//        @Override
+//        public void run() {
+//            fiyatEsle();
+//        }
+//    }
 }

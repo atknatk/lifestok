@@ -805,7 +805,7 @@ public class UrunCrudUI extends javax.swing.JFrame {
                 urunler.setUrunKdvGrup((KdvGrup) kdv.getSelectedItem());
                 urunler.setUrunOzelkod(ozelKod.getText());
                 urunler.setUrunRenk(renkKodu.getText());
-                controller.createUrunlerDigerSube(urunler);
+              //  controller.createUrunlerDigerSube(urunler);
                 JOptionPane.showMessageDialog(this, "Ürün Diğer Şübeye Kaydedildi", "Kaydedildi", JOptionPane.INFORMATION_MESSAGE);
 
             } catch (NumberFormatException | HeadlessException e) {

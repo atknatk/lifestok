@@ -99,7 +99,7 @@ public final class MainUI extends javax.swing.JFrame {
             jMenu3.setVisible(false);
             jMenu14.setVisible(false);
             jMenu16.setVisible(false);
-            digerSubeMenu.setVisible(false);
+            //digerSubeMenu.setVisible(false);
 
         }
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -215,54 +215,6 @@ public final class MainUI extends javax.swing.JFrame {
         jMenu15 = new javax.swing.JMenu();
         jMenuItem38 = new javax.swing.JMenuItem();
         jMenuItem39 = new javax.swing.JMenuItem();
-        digerSubeMenu = new javax.swing.JMenu();
-        jMenu22 = new javax.swing.JMenu();
-        jMenuItem43 = new javax.swing.JMenuItem();
-        jSeparator23 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem44 = new javax.swing.JMenuItem();
-        jSeparator24 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem45 = new javax.swing.JMenuItem();
-        jSeparator25 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem46 = new javax.swing.JMenuItem();
-        jSeparator26 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem47 = new javax.swing.JMenuItem();
-        jSeparator27 = new javax.swing.JPopupMenu.Separator();
-        jMenu23 = new javax.swing.JMenu();
-        jMenuItem48 = new javax.swing.JMenuItem();
-        jMenuItem49 = new javax.swing.JMenuItem();
-        jSeparator28 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem50 = new javax.swing.JMenuItem();
-        jSeparator29 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem51 = new javax.swing.JMenuItem();
-        jSeparator30 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem52 = new javax.swing.JMenuItem();
-        jSeparator31 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem53 = new javax.swing.JMenuItem();
-        jSeparator32 = new javax.swing.JPopupMenu.Separator();
-        jMenu24 = new javax.swing.JMenu();
-        jMenuItem54 = new javax.swing.JMenuItem();
-        jSeparator33 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem55 = new javax.swing.JMenuItem();
-        jSeparator34 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem56 = new javax.swing.JMenuItem();
-        jSeparator35 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem57 = new javax.swing.JMenuItem();
-        jSeparator36 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem58 = new javax.swing.JMenuItem();
-        jSeparator37 = new javax.swing.JPopupMenu.Separator();
-        jMenu25 = new javax.swing.JMenu();
-        jMenuItem59 = new javax.swing.JMenuItem();
-        jMenuItem60 = new javax.swing.JMenuItem();
-        jMenuItem61 = new javax.swing.JMenuItem();
-        jMenuItem62 = new javax.swing.JMenuItem();
-        jMenuItem63 = new javax.swing.JMenuItem();
-        jSeparator38 = new javax.swing.JPopupMenu.Separator();
-        jMenu26 = new javax.swing.JMenu();
-        jMenuItem70 = new javax.swing.JMenuItem();
-        jMenuItem71 = new javax.swing.JMenuItem();
-        jMenuItem72 = new javax.swing.JMenuItem();
-        jMenuItem73 = new javax.swing.JMenuItem();
-        jMenuItem74 = new javax.swing.JMenuItem();
         jMenu16 = new javax.swing.JMenu();
         jMenuItem40 = new javax.swing.JMenuItem();
 
@@ -678,199 +630,6 @@ public final class MainUI extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu15);
 
-        digerSubeMenu.setText("Diğer Şube Raporları");
-
-        jMenu22.setText("Ürün Raporları");
-
-        jMenuItem43.setText("Ürün Listesi Raporu");
-        jMenu22.add(jMenuItem43);
-        jMenu22.add(jSeparator23);
-
-        jMenuItem44.setText("Ürün Listesi Detay Raporu");
-        jMenu22.add(jMenuItem44);
-        jMenu22.add(jSeparator24);
-
-        jMenuItem45.setText("Ürün Ekstresi Raporu");
-        jMenu22.add(jMenuItem45);
-        jMenu22.add(jSeparator25);
-
-        jMenuItem46.setText("Ürün Satış Miktarı");
-        jMenu22.add(jMenuItem46);
-        jMenu22.add(jSeparator26);
-
-        jMenuItem47.setText("Satılmayan Ürünler Raporu");
-        jMenu22.add(jMenuItem47);
-
-        digerSubeMenu.add(jMenu22);
-        digerSubeMenu.add(jSeparator27);
-
-        jMenu23.setText("Cari Hesap Raporları");
-
-        jMenuItem48.setText("Cari Hesap Ekstrası");
-        jMenu23.add(jMenuItem48);
-
-        jMenuItem49.setText("Cari Hesap Ekstrası (Detaylı)");
-        jMenuItem49.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem49ActionPerformed(evt);
-            }
-        });
-        jMenu23.add(jMenuItem49);
-        jMenu23.add(jSeparator28);
-
-        jMenuItem50.setText("Cari Hesap Listesi");
-        jMenu23.add(jMenuItem50);
-        jMenu23.add(jSeparator29);
-
-        jMenuItem51.setText("Borç / Alacak Raporu");
-        jMenu23.add(jMenuItem51);
-        jMenu23.add(jSeparator30);
-
-        jMenuItem52.setText("Borçlu Cari Hesaplar");
-        jMenu23.add(jMenuItem52);
-        jMenu23.add(jSeparator31);
-
-        jMenuItem53.setText("Alacaklı Cari Hesaplar");
-        jMenu23.add(jMenuItem53);
-
-        digerSubeMenu.add(jMenu23);
-        digerSubeMenu.add(jSeparator32);
-
-        jMenu24.setText("Ciro Raporları");
-
-        jMenuItem54.setText("Gün Sonu Raporu");
-        jMenuItem54.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem54ActionPerformed(evt);
-            }
-        });
-        jMenu24.add(jMenuItem54);
-        jMenu24.add(jSeparator33);
-
-        jMenuItem55.setText("Günlere Göre Ciro Raporu");
-        jMenuItem55.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem55ActionPerformed(evt);
-            }
-        });
-        jMenu24.add(jMenuItem55);
-        jMenu24.add(jSeparator34);
-
-        jMenuItem56.setText("Haftalara Göre Ciro Raporu");
-        jMenu24.add(jMenuItem56);
-        jMenu24.add(jSeparator35);
-
-        jMenuItem57.setText("Aylara Göre Ciro Raporu");
-        jMenuItem57.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem57ActionPerformed(evt);
-            }
-        });
-        jMenu24.add(jMenuItem57);
-        jMenu24.add(jSeparator36);
-
-        jMenuItem58.setText("Yıllara Göre Ciro Raporu");
-        jMenuItem58.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem58ActionPerformed(evt);
-            }
-        });
-        jMenu24.add(jMenuItem58);
-
-        digerSubeMenu.add(jMenu24);
-        digerSubeMenu.add(jSeparator37);
-
-        jMenu25.setText("Kar Raprları");
-
-        jMenuItem59.setText("Yıllara Göre Kar Raporu");
-        jMenuItem59.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem59ActionPerformed(evt);
-            }
-        });
-        jMenu25.add(jMenuItem59);
-
-        jMenuItem60.setText("Aylara Göre Kar Raporu");
-        jMenuItem60.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem60ActionPerformed(evt);
-            }
-        });
-        jMenu25.add(jMenuItem60);
-
-        jMenuItem61.setText("Haftalara Göre Kar Raporu");
-        jMenuItem61.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem61ActionPerformed(evt);
-            }
-        });
-        jMenu25.add(jMenuItem61);
-
-        jMenuItem62.setText("Günlere Göre Kar Raporu");
-        jMenuItem62.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem62ActionPerformed(evt);
-            }
-        });
-        jMenu25.add(jMenuItem62);
-
-        jMenuItem63.setText("Gün Sonu Kar Raporu");
-        jMenuItem63.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem63ActionPerformed(evt);
-            }
-        });
-        jMenu25.add(jMenuItem63);
-
-        digerSubeMenu.add(jMenu25);
-        digerSubeMenu.add(jSeparator38);
-
-        jMenu26.setText("Ödeme Raporları");
-
-        jMenuItem70.setText("Gün Sonu Ödeme  Ekstresi Raporu");
-        jMenuItem70.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem70ActionPerformed(evt);
-            }
-        });
-        jMenu26.add(jMenuItem70);
-
-        jMenuItem71.setText("Günlere Göre Ödeme  Ekstresi Raporu");
-        jMenuItem71.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem71ActionPerformed(evt);
-            }
-        });
-        jMenu26.add(jMenuItem71);
-
-        jMenuItem72.setText("Haftalara Göre Ödeme  Ekstresi Raporu");
-        jMenuItem72.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem72ActionPerformed(evt);
-            }
-        });
-        jMenu26.add(jMenuItem72);
-
-        jMenuItem73.setText("Aylara Göre Ödeme  Ekstresi Raporu");
-        jMenuItem73.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem73ActionPerformed(evt);
-            }
-        });
-        jMenu26.add(jMenuItem73);
-
-        jMenuItem74.setText("Yıllara Göre Ödeme  Ekstresi Raporu");
-        jMenuItem74.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem74ActionPerformed(evt);
-            }
-        });
-        jMenu26.add(jMenuItem74);
-
-        digerSubeMenu.add(jMenu26);
-
-        jMenuBar1.add(digerSubeMenu);
-
         jMenu16.setText("Mal Girişi");
 
         jMenuItem40.setText("Mal Girişi");
@@ -1010,49 +769,9 @@ public final class MainUI extends javax.swing.JFrame {
         new TekTarihIndirim().setVisible(VISIBILTY_SHOW);
     }//GEN-LAST:event_jMenuItem42ActionPerformed
 
-    private void jMenuItem49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem49ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem49ActionPerformed
-
-    private void jMenuItem54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem54ActionPerformed
-        new GunlukCiro(ip);
-    }//GEN-LAST:event_jMenuItem54ActionPerformed
-
-    private void jMenuItem55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem55ActionPerformed
-        new GunlereGoreCiroPanel(ip).setVisible(VISIBILTY_SHOW);
-    }//GEN-LAST:event_jMenuItem55ActionPerformed
-
-    private void jMenuItem57ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem57ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem57ActionPerformed
-
-    private void jMenuItem58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem58ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem58ActionPerformed
-
-    private void jMenuItem59ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem59ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem59ActionPerformed
-
-    private void jMenuItem60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem60ActionPerformed
-        new AylikKarPanel(ip).setVisible(VISIBILTY_SHOW);
-    }//GEN-LAST:event_jMenuItem60ActionPerformed
-
-    private void jMenuItem62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem62ActionPerformed
-        new GunlereGoreKarPanel(ip).setVisible(VISIBILTY_SHOW);
-    }//GEN-LAST:event_jMenuItem62ActionPerformed
-
-    private void jMenuItem63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem63ActionPerformed
-        new GunlukKar(ip);
-    }//GEN-LAST:event_jMenuItem63ActionPerformed
-
     private void jMenuItem35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem35ActionPerformed
         new HaftalikKarPanel().setVisible(VISIBILTY_SHOW);
     }//GEN-LAST:event_jMenuItem35ActionPerformed
-
-    private void jMenuItem61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem61ActionPerformed
-        new HaftalikKarPanel(ip).setVisible(VISIBILTY_SHOW);
-    }//GEN-LAST:event_jMenuItem61ActionPerformed
 
     private void jMenuItem65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem65ActionPerformed
         Date date = new Date();
@@ -1079,34 +798,12 @@ public final class MainUI extends javax.swing.JFrame {
         new HaftalikEkstraPanel().setVisible(VISIBILTY_SHOW);
     }//GEN-LAST:event_jMenuItem68ActionPerformed
 
-    private void jMenuItem70ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem70ActionPerformed
-        Date date = new Date();
-        new GunlukEkstre(date, date, ip);
-    }//GEN-LAST:event_jMenuItem70ActionPerformed
-
-    private void jMenuItem71ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem71ActionPerformed
-        new GunlereGoreEkstraPanel(ip).setVisible(VISIBILTY_SHOW);
-    }//GEN-LAST:event_jMenuItem71ActionPerformed
-
-    private void jMenuItem72ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem72ActionPerformed
-        new HaftalikEkstraPanel(ip).setVisible(VISIBILTY_SHOW);
-    }//GEN-LAST:event_jMenuItem72ActionPerformed
-
-    private void jMenuItem73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem73ActionPerformed
-        new AylikEkstraPanel(ip).setVisible(VISIBILTY_SHOW);
-    }//GEN-LAST:event_jMenuItem73ActionPerformed
-
-    private void jMenuItem74ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem74ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem74ActionPerformed
-
     private void jMenuItem64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem64ActionPerformed
         new RaporFilter().setVisible(VISIBILTY_SHOW);
     }//GEN-LAST:event_jMenuItem64ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JPanel anaPanel;
-    private javax.swing.JMenu digerSubeMenu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
     private javax.swing.JMenu jMenu11;
@@ -1120,11 +817,6 @@ public final class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu19;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu20;
-    private javax.swing.JMenu jMenu22;
-    private javax.swing.JMenu jMenu23;
-    private javax.swing.JMenu jMenu24;
-    private javax.swing.JMenu jMenu25;
-    private javax.swing.JMenu jMenu26;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -1170,29 +862,8 @@ public final class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem40;
     private javax.swing.JMenuItem jMenuItem41;
     private javax.swing.JMenuItem jMenuItem42;
-    private javax.swing.JMenuItem jMenuItem43;
-    private javax.swing.JMenuItem jMenuItem44;
-    private javax.swing.JMenuItem jMenuItem45;
-    private javax.swing.JMenuItem jMenuItem46;
-    private javax.swing.JMenuItem jMenuItem47;
-    private javax.swing.JMenuItem jMenuItem48;
-    private javax.swing.JMenuItem jMenuItem49;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem50;
-    private javax.swing.JMenuItem jMenuItem51;
-    private javax.swing.JMenuItem jMenuItem52;
-    private javax.swing.JMenuItem jMenuItem53;
-    private javax.swing.JMenuItem jMenuItem54;
-    private javax.swing.JMenuItem jMenuItem55;
-    private javax.swing.JMenuItem jMenuItem56;
-    private javax.swing.JMenuItem jMenuItem57;
-    private javax.swing.JMenuItem jMenuItem58;
-    private javax.swing.JMenuItem jMenuItem59;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem60;
-    private javax.swing.JMenuItem jMenuItem61;
-    private javax.swing.JMenuItem jMenuItem62;
-    private javax.swing.JMenuItem jMenuItem63;
     private javax.swing.JMenuItem jMenuItem64;
     private javax.swing.JMenuItem jMenuItem65;
     private javax.swing.JMenuItem jMenuItem66;
@@ -1200,11 +871,6 @@ public final class MainUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem68;
     private javax.swing.JMenuItem jMenuItem69;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem70;
-    private javax.swing.JMenuItem jMenuItem71;
-    private javax.swing.JMenuItem jMenuItem72;
-    private javax.swing.JMenuItem jMenuItem73;
-    private javax.swing.JMenuItem jMenuItem74;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
@@ -1223,23 +889,7 @@ public final class MainUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator20;
     private javax.swing.JPopupMenu.Separator jSeparator21;
     private javax.swing.JPopupMenu.Separator jSeparator22;
-    private javax.swing.JPopupMenu.Separator jSeparator23;
-    private javax.swing.JPopupMenu.Separator jSeparator24;
-    private javax.swing.JPopupMenu.Separator jSeparator25;
-    private javax.swing.JPopupMenu.Separator jSeparator26;
-    private javax.swing.JPopupMenu.Separator jSeparator27;
-    private javax.swing.JPopupMenu.Separator jSeparator28;
-    private javax.swing.JPopupMenu.Separator jSeparator29;
     private javax.swing.JPopupMenu.Separator jSeparator3;
-    private javax.swing.JPopupMenu.Separator jSeparator30;
-    private javax.swing.JPopupMenu.Separator jSeparator31;
-    private javax.swing.JPopupMenu.Separator jSeparator32;
-    private javax.swing.JPopupMenu.Separator jSeparator33;
-    private javax.swing.JPopupMenu.Separator jSeparator34;
-    private javax.swing.JPopupMenu.Separator jSeparator35;
-    private javax.swing.JPopupMenu.Separator jSeparator36;
-    private javax.swing.JPopupMenu.Separator jSeparator37;
-    private javax.swing.JPopupMenu.Separator jSeparator38;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;

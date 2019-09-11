@@ -20,9 +20,9 @@ public class UrunlerController {
         return getUrunlerDao().getUrunList();
     }
 
-    public List<Urunler> getUrunlerList(String ip) {
-        return getUrunlerDao().getUrunList(ip);
-    }
+//    public List<Urunler> getUrunlerList(String ip) {
+//        return getUrunlerDao().getUrunList(ip);
+//    }
 
     public Urunler getUrunler(int id) {
         return getUrunlerDao().getUrun(id);
@@ -44,9 +44,9 @@ public class UrunlerController {
         return getUrunlerDao().createUrun(urun);
     }
 
-    public int createUrunlerDigerSube(Urunler urun) {
-        return getUrunlerDao().createUrunDigerSube(urun);
-    }
+//    public int createUrunlerDigerSube(Urunler urun) {
+//        return getUrunlerDao().createUrunDigerSube(urun);
+//    }
 
     public void stokEksiUrun(Urunler urun, Double miktar) {
         getUrunlerDao().stokEksiUrun(urun, miktar);

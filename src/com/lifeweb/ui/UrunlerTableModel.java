@@ -22,16 +22,15 @@ public class UrunlerTableModel {
 
     public static TableModel urunlerTableModel(boolean digerSube) {
 
-        RoomTableListWithChild(digerSube);
+        RoomTableListWithChild();
         _rows = new ArrayList();
         _rows.addAll(Arrays.asList(data));
         return new QuoteTableModel();
     }
 
-    private static void RoomTableListWithChild(boolean digerSube) {
+    private static void RoomTableListWithChild() {
         UrunlerController controller = new UrunlerController(new UrunlerDaoImpl());
         header = new String[]{"Barkod No", "Ürün Adı", "Alış Fiyatı", "Satış Fiyatı 1", "Satış Fiyatı 2", "Satış Fiyatı 3", "Mevcut Stok"};
-        if (!digerSube) {
             List<Urunler> urunler = controller.getUrunlerList();
 
             data = new Object[urunler.size()][7];
@@ -46,20 +45,7 @@ public class UrunlerTableModel {
                 data[i][5] = urun.getUrunSatisFiyat3();
                 data[i][6] = urun.getUrunStokSeviye();
             }
-        } else {
-            List<Urunler> urunler = controller.getUrunlerList(MainUI.getIp());
-            data = new Object[urunler.size()][7];
-            for (int i = 0; i < urunler.size(); i++) {
-                Urunler urun = urunler.get(i);
-                data[i][0] = urun.getBarkodId();
-                data[i][1] = urun;
-                data[i][2] = urun.getUrunAlisFiyat();
-                data[i][3] = urun.getUrunSatisFiyat();
-                data[i][4] = urun.getUrunSatisFiyat2();
-                data[i][5] = urun.getUrunSatisFiyat3();
-                data[i][6] = urun.getUrunStokSeviye();
-            }
-        }
+      
 
     }
 

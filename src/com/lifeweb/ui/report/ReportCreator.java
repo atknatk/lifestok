@@ -35,7 +35,7 @@ public class ReportCreator {
         InputStream is = this.getClass().getClassLoader().getResourceAsStream(ReportType.getReportFile(reportType));
         JasperPrint jp = null;
         try {
-            jp = JasperFillManager.fillReport(is, params, ip==null?DaoHelper.instance().getConnection():DaoHelper.instance().getConnection(ip));
+            jp = JasperFillManager.fillReport(is, params, ip==null?DaoHelper.instance().getConnection():DaoHelper.instance().getConnection());
         } catch (JRException ex) {
             Logger.getLogger(GunlukKar.class.getName()).log(Level.SEVERE, null, ex);
         }

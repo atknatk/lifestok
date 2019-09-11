@@ -68,7 +68,7 @@ public class GunlukCiro {
         Connection con = null;
         JasperPrint jp = null;
         try {
-            con = DaoHelper.instance().getConnection(ip);
+            con = DaoHelper.instance().getConnection();
             jp = JasperFillManager.fillReport(is, params, con);
         } catch (JRException ex) {
             Logger.getLogger(GunlukCiro.class.getName()).log(Level.SEVERE, null, ex);

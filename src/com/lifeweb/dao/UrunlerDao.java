@@ -7,11 +7,11 @@ public interface UrunlerDao {
 
     int createUrun(Urunler urunler);
 
-    int createUrunDigerSube(Urunler urunler);
+  //  int createUrunDigerSube(Urunler urunler);
 
     List<Urunler> getUrunList();
 
-    List<Urunler> getUrunList(String ip);
+//    List<Urunler> getUrunList(String ip);
 
     Urunler getUrun(int id);
 

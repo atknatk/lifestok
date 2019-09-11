@@ -36,14 +36,14 @@ public class GunlereGoreCiro {
         Connection con = null;
         JasperPrint jp = null;
         try {
-            if (ip == null) {
+//            if (ip == null) {
                 jp = JasperFillManager.fillReport(is, params, DaoHelper.instance().getConnection());
 
-            } else {
-                con = DaoHelper.instance().getConnection(ip);
-                jp = JasperFillManager.fillReport(is, params, con);
-
-            }
+//            } else {
+//                con = DaoHelper.instance().getConnection(ip);
+//                jp = JasperFillManager.fillReport(is, params, con);
+//
+//            }
         } catch (JRException ex) {
             Logger.getLogger(GunlereGoreCiro.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
