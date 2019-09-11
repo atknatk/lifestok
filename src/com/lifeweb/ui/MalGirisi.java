@@ -335,7 +335,7 @@ public class MalGirisi extends javax.swing.JFrame {
 //            Connection con = null;
 //            PreparedStatement pstmt = null;
 //            try {
-//                con = DaoHelper.instance().getConnection(Helper.getConfigs().get("diger_sube_ip"));
+//                con = DaoHelper.instance().getConnection(Helper.getConfigs().get("sql_ip"));
 //                // con = DaoHelper.instance().getConnection();
 //                for (int i = 0; i < rowCount; i++) {
 //                    final int cur = i;
@@ -420,7 +420,7 @@ public class MalGirisi extends javax.swing.JFrame {
             PreparedStatement pstmt = null;
             try {
 //                if (IS_DIGER_SUBE) {
-//                    con = DaoHelper.instance().getConnection(Helper.getConfigs().get("diger_sube_ip"));
+//                    con = DaoHelper.instance().getConnection(Helper.getConfigs().get("sql_ip"));
 //                } else {
                     con = DaoHelper.instance().getConnection();
 //                }

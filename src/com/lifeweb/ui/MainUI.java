@@ -990,7 +990,7 @@ private static ProgressStatusBarItem progress;
 
         try {
             prop.load(new FileInputStream("config.properties"));
-            ip = prop.getProperty("diger_sube_ip");
+            ip = prop.getProperty("sql_ip");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -1002,7 +1002,7 @@ private static ProgressStatusBarItem progress;
 
         try {
             //set the properties value
-            prop.setProperty("diger_sube_ip", "192.168.0.1");
+            prop.setProperty("sql_ip", "localhost");
             prop.setProperty("title", "Çınaraltı Kozmetik");
 
             prop.store(new FileOutputStream("config.properties"), null);

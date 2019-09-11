@@ -11,7 +11,7 @@ import org.apache.commons.lang.StringUtils;
 
 public class DaoHelper {
 
-    private static final String IP_KEY = "diger_sube_ip";
+    private static final String IP_KEY = "sql_ip";
     private static String url;
     private static final String id = "root";
     private static final String pw = "atikler";

@@ -47,7 +47,7 @@ public class Helper {
                 String value = entry.getValue().toString();
                 CONFIGS.put(key, value);
             }
-            return prop.getProperty("diger_sube_ip");
+            return prop.getProperty("sql_ip");
         } catch (IOException ex) {
         }
         return "";

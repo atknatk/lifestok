@@ -81,7 +81,7 @@ public class UrunlerDaoImpl implements UrunlerDao {
 //        Connection con = null;
 //        PreparedStatement pstmt;
 //        try {
-//            String ip = Helper.getConfigs().get("diger_sube_ip");
+//            String ip = Helper.getConfigs().get("sql_ip");
 //         //   con = DaoHelper.instance().getConnection(ip);
 //            pstmt = con.prepareStatement("INSERT INTO urunler(BARKOD_ID, BARKOD_TUR, BARKOD_TIP, URUN_ADI,"
 //                    + " BIRIM_REF, URUN_ALIS_FIYAT, URUN_SATIS_FIYAT, URUN_SATIS_FIYAT2,"
